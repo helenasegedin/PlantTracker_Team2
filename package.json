@@ -1,14 +1,14 @@
 {
   "name": "PlantTracker_Team2",
-  "version": "0.2.0",
-    "description": "",
-    "main": "index.js",
-    "scripts": {
+  "version": "0.3.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
     "start": "nodemon -e js, json, yml index.js"
-    },
-    "keywords": [],
-    "author": "Team2",
-    "license": "ISC",
+  },
+  "keywords": [],
+  "author": "Team2",
+  "license": "ISC",
   "dependencies": {
     "@gradeup/email-verify": "^0.2.4",
     "bcrypt": "^5.1.1",
