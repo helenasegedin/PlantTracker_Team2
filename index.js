@@ -199,6 +199,22 @@ app.post('/plants', authorizeRequest, (req, res) => {
     res.status(201).send(plants[plants.length - 1])
 })
 
+app.delete('/plants/:id', authorizeRequest, (req, res) => {
+
+    // Find plant in database
+    const plant = plants.find(plant => plant.id === parseInt(req.params.id))
+    if (!plant) return res.status(404).send('Plant not found')
+
+    // Check that the plant belongs to the user
+    if (plant.userId !== req.user.id) return res.status(403).send('Forbidden')
+
+    // Remove plant from plants array
+    plants.splice(plants.indexOf(plant), 1)
+
+    res.status(204).end()
+
+})
+
 app.listen(port, () => {
     console.log(`Example app listening on port ${port}`)
 })
