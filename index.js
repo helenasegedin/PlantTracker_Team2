@@ -174,8 +174,7 @@ function authorizeRequest(req, res, next) {
     next()
 
 }
-
-app.get('/plants', authorizeRequest, (req, res) => {
+app.get('/plants', authorizeRequest, async (req, res) => {
 
     // get plants for user
     const plantsForUser = plants.filter(plant => plant.userId === req.user.id)
@@ -198,7 +197,7 @@ app.post('/plants', authorizeRequest, (req, res) => {
     if (!req.body.name || !req.body.description) return res.status(400).send('Name and description are required')
 
     // Find max id
-    const maxId = plants.reduce((max, plant) => plant.id > max ? plant.id : max, plants[0].id)
+    const maxId = plants.reduce((max, plant) => plant.id > max ? plant.id : max, 0)
 
     // Save plant to database
     const plant = {id: maxId + 1, name: req.body.name, description: req.body.description, userId: req.user.id}
